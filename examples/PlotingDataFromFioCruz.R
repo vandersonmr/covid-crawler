@@ -1,9 +1,10 @@
+# Example of how to gather data from FioCruz API
+
 library("httr")
 library("jsonlite")
 library("rjson")
 library("data.table")
 library('googleVis')
-
 
 base = 'https://bigdata-api.fiocruz.br/numero/casos/pais/'
 endpoint = 'Brasil'
@@ -24,6 +25,7 @@ node_daily_details1 <- data_daily_details[['detalhes_por_dia']]
 
 table_daily_details1 <- rbindlist(node_daily_details1, use.names = TRUE)
 
+# Plotting data directly
 graph <- gvisLineChart(table_daily_details1, xvar='date', yvar=c('new_cases', 'new_deaths'))
 plot(graph)
 
